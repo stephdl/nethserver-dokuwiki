@@ -44,26 +44,5 @@ rm -rf $RPM_BUILD_ROOT
 %postun
 
 %changelog
-* Sat Jul 5 2014 Daniel B. <daniel@firewall-services.com> 0.1.5-1
-- Small fixes in authhttpldap plugin
-
-* Tue May 6 2014 Daniel B. <daniel@firewall-services.com> 0.1.4-1
-- Add missing plugin.info.txt file for the authhttpldap plugin
-
-* Thu Dec 5 2013 Daniel B. <daniel@firewall-services.com> 0.1.3-1
-- Push php memory limit to 128M
-
-* Fri Nov 22 2013 Daniel B. <daniel@firewall-services.com> 0.1.2-1
-- Fix a typo which prevent transparent SSL redirection
-
-* Wed May 15 2013 Daniel B. <daniel@firewall-services.com> 0.1.1-1
-- Use the new auth plugins to be compatible with dokuwiki 2013-05-10
-
-* Wed May 15 2013 Daniel B. <daniel@firewall-services.com> 0.1.0-1
-- Import in GIT
-
-* Mon Dec 19 2011 Daniel B. <daniel@firewall-services.com> 0.1-2
-- Follow symlinks so fck media browser works
-
-* Fri Jul 08 2011 Daniel B. <daniel@firewall-services.com> 0.1-1
-- initial release
+* Tue Mar 22 2016 stephane de Labrusse <stephdl@de-labrusse.fr> 0.0.1
+- First release to Nethserver

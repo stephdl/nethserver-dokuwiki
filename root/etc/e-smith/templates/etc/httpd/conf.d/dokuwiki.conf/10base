@@ -4,7 +4,6 @@ if (($dokuwiki{'status'} || 'disabled') eq 'enabled'){
     my $allow = (($dokuwiki{'access'} || 'private') eq 'public') ? 'all':"$localAccess";
     my $maxsize = $dokuwiki{'MaxUploadSize'} || '200';
     $maxsize .= 'M' unless ($maxsize =~ m/M$/);
-    my $memory = $maxsize*2
 
 
 $OUT .= "Alias /dokuwiki /usr/share/dokuwiki";
@@ -23,8 +22,7 @@ if (exists $dokuwiki{'URL'})
     AddType application/x-httpd-php .php
     Order Allow,Deny
     Allow from $allow
-    php_admin_value open_basedir /usr/share/dokuwiki:/var/lib/dokuwiki:/etc/dokuwiki
-    php_admin_value memory_limit $memory
+    php_admin_value memory_limit $maxsize
     php_admin_value upload_max_filesize $maxsize
     php_admin_value post_max_size $maxsize
     php_admin_value upload_tmp_dir /var/lib/dokuwiki/data/tmp

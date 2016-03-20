@@ -3,8 +3,18 @@
 use esmith::util;
 my $ldapPort = $ldap{'TCPPort'} || '389';
 my $Pass = NethServer::Password::store('libuser'); 
+my $auth = $dokuwiki{'Authentication'} || 'ldap';
 
-    $OUT .= "\$conf['authtype'] = 'authldap'";
+if ($auth eq 'internal'){
+    $OUT .=<<"EOF";
+
+\$conf['authtype'] = 'authplain';
+
+EOF
+
+}
+elsif ($auth eq 'ldap'){
+    $OUT .= "\$conf['authtype'] = 'authldap';";
 
 
 
@@ -15,7 +25,7 @@ my $Pass = NethServer::Password::store('libuser');
 \$conf['plugin'][\$conf['authtype']]['usertree'] = 'ou=People,dc=directory,dc=nh';
 \$conf['plugin'][\$conf['authtype']]['grouptree'] = 'ou=Groups,dc=directory,dc=nh';
 \$conf['plugin'][\$conf['authtype']]['userfilter'] = '(&(uid=%{user})(objectClass=inetOrgPerson))';
-\$conf['plugin'][\$conf['authtype']]['groupfilter'] = '(&(objectClass=mailboxRelatedObject)(memberUid=%{user}))';
+\$conf['plugin']['authldap']['groupfilter']  = '(|(memberUid=%{user})(gidNumber=%{gid}))';
 \$conf['plugin'][\$conf['authtype']]['groupkey'] = 'cn';
 \$conf['plugin']['authldap']['binddn']     = 'cn=libuser, dc=directory, dc=nh';
 \$conf['plugin']['authldap']['bindpw']     = "$Pass";
@@ -23,3 +33,5 @@ EOF
 
 }
 
+
+}

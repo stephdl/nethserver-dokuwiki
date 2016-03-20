@@ -33,7 +33,7 @@ class DokuWiki extends \Nethgui\Module\AbstractModule implements \NethServer\Mod
     {
          $host = explode(':',$_SERVER['HTTP_HOST']);
          return array(
-            'url' => "http://".$host[0]."/dokuwiki/"
+            'url' => "https://".$host[0]."/dokuwiki/"
          );
     }
 }

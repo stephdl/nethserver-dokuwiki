@@ -9,12 +9,9 @@
     my $ndb = esmith::NetworksDB->open_ro();
 
     my @localAccess = $ndb->local_access_spec();
-    my $validFrom = ${'httpd-admin'}{'ValidFrom'};
-    if ($validFrom)
-    {
-	push @localAccess, split /,/, $validFrom;
-    }
     $localAccess .= join ' ',
-	map { s:/255.255.255.255::; $_ }
-	    @localAccess;
+        map { s:/255.255.255.255::; $_ }
+            @localAccess;
+
+    "";
 }
