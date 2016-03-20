@@ -1,0 +1,11 @@
+
+$conf['useacl'] = 1;
+
+{
+
+if (system('egrep -q "^[^#/].*\[\'superuser\'\]" /etc/dokuwiki/local.php') != 0){
+    $OUT .= '$conf[\'superuser\'] = \'admin\';';
+}
+
+}
+

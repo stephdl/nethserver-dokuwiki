@@ -1,0 +1,25 @@
+{
+
+use esmith::util;
+my $ldapPort = $ldap{'TCPPort'} || '389';
+my $Pass = NethServer::Password::store('libuser'); 
+
+    $OUT .= "\$conf['authtype'] = 'authldap'";
+
+
+
+    $OUT .=<<"EOF";
+
+\$conf['plugin'][\$conf['authtype']]['server'] = "ldap://localhost:$ldapPort";
+\$conf['plugin'][\$conf['authtype']]['version'] = '3';
+\$conf['plugin'][\$conf['authtype']]['usertree'] = 'ou=People,dc=directory,dc=nh';
+\$conf['plugin'][\$conf['authtype']]['grouptree'] = 'ou=Groups,dc=directory,dc=nh';
+\$conf['plugin'][\$conf['authtype']]['userfilter'] = '(&(uid=%{user})(objectClass=inetOrgPerson))';
+\$conf['plugin'][\$conf['authtype']]['groupfilter'] = '(&(objectClass=mailboxRelatedObject)(memberUid=%{user}))';
+\$conf['plugin'][\$conf['authtype']]['groupkey'] = 'cn';
+\$conf['plugin']['authldap']['binddn']     = 'cn=libuser, dc=directory, dc=nh';
+\$conf['plugin']['authldap']['bindpw']     = "$Pass";
+EOF
+
+}
+
