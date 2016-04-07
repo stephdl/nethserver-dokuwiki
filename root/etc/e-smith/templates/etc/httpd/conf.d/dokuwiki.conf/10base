@@ -4,15 +4,33 @@ if (($dokuwiki{'status'} || 'disabled') eq 'enabled'){
     my $allow = (($dokuwiki{'access'} || 'private') eq 'public') ? 'all':"$localAccess";
     my $maxsize = $dokuwiki{'MaxUploadSize'} || '200';
     $maxsize .= 'M' unless ($maxsize =~ m/M$/);
+    my $domain = $dokuwiki{'DocumentRoot'} || '';
 
-
+if ( ! defined $domain ) {
 $OUT .= "Alias /dokuwiki /usr/share/dokuwiki";
 
 if (exists $dokuwiki{'URL'})
     {
         $OUT .= "Alias /$dokuwiki{'URL'} /usr/share/dokuwiki";
     }
- 
+}
+
+elsif ($domain) {
+    $OUT .=<<"EOF";
+
+<VirtualHost *:80>
+    ServerName $domain
+    DocumentRoot  /usr/share/dokuwiki/
+    Redirect permanent / https://$domain/
+</VirtualHost>
+
+<VirtualHost *:443>
+    ServerName $domain
+    SSLEngine on
+    DocumentRoot  /usr/share/dokuwiki/
+EOF
+}
+
     $OUT .=<<"EOF";
 
 <Directory /usr/share/dokuwiki>
@@ -65,8 +83,9 @@ if (exists $dokuwiki{'URL'})
     Deny from all
 </Directory>
 
-
 EOF
+$OUT .= "</VirtualHost>" if (defined $domain);
+
 
 }
 else {
