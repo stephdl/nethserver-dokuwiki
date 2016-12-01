@@ -1,5 +1,5 @@
 %define name nethserver-dokuwiki
-%define version 0.0.2
+%define version 0.1.0
 %define release 1
 Summary: Nethserver integration of dokuwiki
 Name: %{name}
@@ -13,7 +13,6 @@ BuildRequires: nethserver-devtools
 BuildRoot: /var/tmp/%{name}-%{version}
 Requires: dokuwiki
 Requires: nethserver-httpd
-Requires: nethserver-directory
 AutoReqProv: no
 
 %description
@@ -31,12 +30,12 @@ perl ./createlinks
 rm -rf $RPM_BUILD_ROOT
 (cd root   ; find . -depth -print | cpio -dump $RPM_BUILD_ROOT)
 rm -f %{name}-%{version}-filelist
-/sbin/e-smith/genfilelist $RPM_BUILD_ROOT \
+%{genfilelist} $RPM_BUILD_ROOT \
 	> %{name}-%{version}-filelist
 
 %files -f %{name}-%{version}-filelist
 %defattr(-,root,root)
-
+%dir %{_nseventsdir}/%{name}-update
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -44,6 +43,9 @@ rm -rf $RPM_BUILD_ROOT
 %postun
 
 %changelog
+* Thu Dec 1 2016 stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.0-1.ns7
+- First release to NS7
+
 * Sat Apr 9 2016 stephane de Labrusse <stephdl@de-labrusse.fr> 0.0.2
 - set a document root is an option accessible by a property
 

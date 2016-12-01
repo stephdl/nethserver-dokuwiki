@@ -1,7 +1,7 @@
 {
 
 if (($dokuwiki{'status'} || 'disabled') eq 'enabled'){
-    my $allow = (($dokuwiki{'access'} || 'private') eq 'public') ? 'all':"$localAccess";
+    my $allow = (($dokuwiki{'access'} || 'private') eq 'public') ? 'all granted':"ip $localAccess";
     my $maxsize = $dokuwiki{'MaxUploadSize'} || '200';
     $maxsize .= 'M' unless ($maxsize =~ m/M$/);
     my $domain = $dokuwiki{'DocumentRoot'} || '';
@@ -38,8 +38,7 @@ EOF
     AllowOverride None
     Options +FollowSymlinks
     AddType application/x-httpd-php .php
-    Order Allow,Deny
-    Allow from $allow
+    Require $allow
     php_admin_value memory_limit $maxsize
     php_admin_value upload_max_filesize $maxsize
     php_admin_value post_max_size $maxsize
