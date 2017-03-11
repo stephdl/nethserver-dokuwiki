@@ -1,5 +1,5 @@
 %define name nethserver-dokuwiki
-%define version 0.1.0
+%define version 0.1.1
 %define release 1
 Summary: Nethserver integration of dokuwiki
 Name: %{name}
@@ -43,6 +43,9 @@ rm -rf $RPM_BUILD_ROOT
 %postun
 
 %changelog
+* Sat Mar 11 2017 stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.1-1.ns7
+- Certificates for virtualhost added
+
 * Thu Dec 1 2016 stephane de Labrusse <stephdl@de-labrusse.fr> 0.1.0-1.ns7
 - First release to NS7
 
