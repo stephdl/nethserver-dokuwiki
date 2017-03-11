@@ -1,5 +1,5 @@
 %define name nethserver-dokuwiki
-%define version 0.0.2
+%define version 0.0.3
 %define release 1
 Summary: Nethserver integration of dokuwiki
 Name: %{name}
@@ -44,6 +44,9 @@ rm -rf $RPM_BUILD_ROOT
 %postun
 
 %changelog
+* Sat Mar 11 2017 stephane de Labrusse <stephdl@de-labrusse.fr> 0.0.2
+- Certificates for virtualhost added
+
 * Sat Apr 9 2016 stephane de Labrusse <stephdl@de-labrusse.fr> 0.0.2
 - set a document root is an option accessible by a property
 
