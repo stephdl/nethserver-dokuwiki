@@ -1,6 +1,6 @@
 %define name nethserver-dokuwiki
 %define version 0.0.3
-%define release 1
+%define release 2
 Summary: Nethserver integration of dokuwiki
 Name: %{name}
 Version: %{version}
@@ -36,6 +36,7 @@ rm -f %{name}-%{version}-filelist
 
 %files -f %{name}-%{version}-filelist
 %defattr(-,root,root)
+%doc COPYING
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -44,7 +45,10 @@ rm -rf $RPM_BUILD_ROOT
 %postun
 
 %changelog
-* Sat Mar 11 2017 stephane de Labrusse <stephdl@de-labrusse.fr> 0.0.2
+* Sun Mar 12 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.0.3.2
+- GPL license
+
+* Sat Mar 11 2017 stephane de Labrusse <stephdl@de-labrusse.fr> 0.0.3
 - Certificates for virtualhost added
 
 * Sat Apr 9 2016 stephane de Labrusse <stephdl@de-labrusse.fr> 0.0.2
