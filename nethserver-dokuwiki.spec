@@ -1,6 +1,6 @@
 %define name nethserver-dokuwiki
 %define version 0.0.4
-%define release 1
+%define release 2
 Summary: Nethserver integration of dokuwiki
 Name: %{name}
 Version: %{version}
@@ -45,7 +45,7 @@ rm -rf $RPM_BUILD_ROOT
 %postun
 
 %changelog
-* Thu Mar 16 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.0.4-1
+* Thu Mar 16 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.0.4-2
 - Changed DocumentRoot to DomainName property
 
 * Sun Mar 12 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.0.3-1

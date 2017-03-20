@@ -4,7 +4,7 @@ if (($dokuwiki{'status'} || 'disabled') eq 'enabled'){
     my $allow = (($dokuwiki{'access'} || 'private') eq 'public') ? 'all':"$localAccess";
     my $maxsize = $dokuwiki{'MaxUploadSize'} || '200';
     $maxsize .= 'M' unless ($maxsize =~ m/M$/);
-    my $domain = $dokuwiki{'DocumentRoot'} || '';
+    my $domain = $dokuwiki{'DomainName'} || '';
     my $cert = $pki{'CrtFile'} || '/etc/pki/tls/certs/NSRV.crt';
     my $key = $pki{'KeyFile'} || '/etc/pki/tls/private/NSRV.key';
 
