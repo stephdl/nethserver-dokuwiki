@@ -18,3 +18,7 @@ event_services($event, 'httpd' => 'reload');
 
 #case dc or directory installed after
 templates2events("/etc/dokuwiki/local.protected.php",  qw (nethserver-dc-update nethserver-directory-update));
+
+my $event = 'trusted-networks-modify';
+templates2events("/etc/httpd/conf.d/dokuwiki.conf",  $event);
+
