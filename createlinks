@@ -21,4 +21,4 @@ templates2events("/etc/dokuwiki/local.protected.php",  qw (nethserver-dc-update 
 
 my $event = 'trusted-networks-modify';
 templates2events("/etc/httpd/conf.d/dokuwiki.conf",  $event);
-
+event_services($event, 'httpd' => 'reload');
