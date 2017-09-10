@@ -1,5 +1,5 @@
 %define name nethserver-dokuwiki
-%define version 0.0.5
+%define version 0.0.6
 %define release 1
 Summary: Nethserver integration of dokuwiki
 Name: %{name}
@@ -45,6 +45,9 @@ rm -rf $RPM_BUILD_ROOT
 %postun
 
 %changelog
+* Sun Sep 10 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.0.6-1
+- Restart httpd service on trusted-network
+
 * Wed Mar 29 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 0.0.5-1
 - Template expansion on trusted-network
 

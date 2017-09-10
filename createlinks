@@ -18,3 +18,4 @@ event_services($event, 'httpd' => 'reload');
 
 my $event = 'trusted-networks-modify';
 templates2events("/etc/httpd/conf.d/dokuwiki.conf",  $event);
+event_services($event, 'httpd' => 'reload');
