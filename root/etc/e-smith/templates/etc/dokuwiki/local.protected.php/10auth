@@ -57,7 +57,7 @@ EOF
 
     else {
     # neither nethserver-dc or nethserver-directory is installed, back to the internal authentication.
-    $OUT .= "\$conf['authtype'] = 'authplain'";
+    $OUT .= "\$conf['authtype'] = 'authplain';";
     }
 }
 }
