@@ -7,6 +7,7 @@ if (($dokuwiki{'status'} || 'disabled') eq 'enabled'){
     my $domain = $dokuwiki{'DomainName'} || '';
     my $cert = $pki{'CrtFile'} || '/etc/pki/tls/certs/NSRV.crt';
     my $key = $pki{'KeyFile'} || '/etc/pki/tls/private/NSRV.key';
+    my $php_port = ${'rh-php71-php-fpm'}{'TCPPorts'} || '9001';
 
 if ( $domain eq '' ) {
 $OUT .= "Alias /dokuwiki /usr/share/dokuwiki";
@@ -48,6 +49,10 @@ EOF
     php_admin_value post_max_size $maxsize
     php_admin_value upload_tmp_dir /var/lib/dokuwiki/data/tmp
     php_admin_value session.save_path /var/lib/dokuwiki/data/tmp
+
+    <FilesMatch \.php\$>
+        SetHandler "proxy:fcgi://127.0.0.1:$php_port"
+    </FilesMatch>
 </Directory>
 
 <Directory /usr/share/dokuwiki/inc>

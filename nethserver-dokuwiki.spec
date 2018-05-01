@@ -1,5 +1,5 @@
 %define name nethserver-dokuwiki
-%define version 0.1.5
+%define version 1.2.0
 %define release 1
 Summary: Nethserver integration of dokuwiki
 Name: %{name}
@@ -11,8 +11,9 @@ Source: %{name}-%{version}.tar.gz
 BuildArchitectures: noarch
 BuildRequires: nethserver-devtools
 BuildRoot: /var/tmp/%{name}-%{version}
-Requires: dokuwiki
+Requires: dokuwiki >= 20180422
 Requires: nethserver-httpd
+Requires: nethserver-rh-php71-php-fpm
 AutoReqProv: no
 
 %description
@@ -45,6 +46,9 @@ rm -rf $RPM_BUILD_ROOT
 %postun
 
 %changelog
+* Tue May 1 2018 Stephane de Labrusse <stephdl@de-labrusse.fr> 1.2.0-1.ns7
+- use nethserver-rh-php71-php-fpm for dokuwiki-20180422
+
 * Mon Oct 02 2017 Stephane de Labrusse <stephdl@de-labrusse.fr> 1.1.5-1.ns7
 - corrected typo in local.protected.php
  
