@@ -4,7 +4,8 @@ use esmith::util;
 use NethServer::SSSD;
 my $sssd = new NethServer::SSSD();
 
-my $quotedBindPass = $sssd->bindPassword(); $quotedBindPass =~ s/\'/\\'/g;
+my $quotedBindPass = $sssd->bindPassword();
+$quotedBindPass =~ s/\'/\\'/g;
 
 #specific OpenLDAP
 my $server = $sssd->ldapURI() .':'. $sssd->port();
@@ -15,7 +16,6 @@ my $binddn = $sssd->bindDN();
 #specific Samba4 AD
 my $host = $sssd->ldapURI();
 my $baseDN = $sssd->baseDN();
-my $bindUser = $sssd->bindUser();
 
 #retrieve the dokuwiki authentication
 my $auth = $dokuwiki{'Authentication'} || 'ldap';
@@ -50,8 +50,6 @@ EOF
 \$conf['plugin']['authad']['account_suffix']     = '\@$DomainName';
 \$conf['plugin']['authad']['base_dn']            = '$baseDN';
 \$conf['plugin']['authad']['domain_controllers'] = '$host'; //multiple can be given
-\$conf['plugin']['authad']['admin_username']        = '$bindUser';
-\$conf['plugin']['authad']['admin_password']        = '$quotedBindPass';
 EOF
     }
 
