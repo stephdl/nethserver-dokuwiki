@@ -48,6 +48,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Sat May 5 2018 stephane de labrusse <stephdl@de-labrusse.fr> 1.2.1-1.ns7
 - SambaAD uses self bind
+- Users cannot change their password with openldap
 
 * Tue May 1 2018 Stephane de Labrusse <stephdl@de-labrusse.fr> 1.2.0-1.ns7
 - use nethserver-rh-php71-php-fpm for dokuwiki-20180422

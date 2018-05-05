@@ -41,6 +41,7 @@ elsif ($auth eq 'ldap'){
 \$conf['plugin']['authldap']['binddn']     = "$binddn";
 \$conf['plugin']['authldap']['bindpw']     = "$quotedBindPass";
 \$conf['plugin']['authldap']['starttls']   = 1;
+\$conf['plugin']['authldap']['modPass'] = 0;
 EOF
     }
 
