@@ -1,5 +1,5 @@
 %define name nethserver-dokuwiki
-%define version 1.2.0
+%define version 1.2.1
 %define release 1
 Summary: Nethserver integration of dokuwiki
 Name: %{name}
@@ -46,6 +46,9 @@ rm -rf $RPM_BUILD_ROOT
 %postun
 
 %changelog
+* Sat May 5 2018 stephane de labrusse <stephdl@de-labrusse.fr> 1.2.1-1.ns7
+- SambaAD uses self bind
+
 * Tue May 1 2018 Stephane de Labrusse <stephdl@de-labrusse.fr> 1.2.0-1.ns7
 - use nethserver-rh-php71-php-fpm for dokuwiki-20180422
 
