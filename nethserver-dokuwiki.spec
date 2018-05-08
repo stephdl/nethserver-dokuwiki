@@ -1,5 +1,5 @@
 %define name nethserver-dokuwiki
-%define version 1.2.1
+%define version 1.2.2
 %define release 1
 Summary: Nethserver integration of dokuwiki
 Name: %{name}
@@ -46,6 +46,9 @@ rm -rf $RPM_BUILD_ROOT
 %postun
 
 %changelog
+* Tue May 8 2018  stephane de labrusse <stephdl@de-labrusse.fr> 1.2.2-1.ns7
+- Subscribe to nethserver-sssd-save event 
+
 * Sat May 5 2018 stephane de labrusse <stephdl@de-labrusse.fr> 1.2.1-1.ns7
 - SambaAD uses self bind
 - Users cannot change their password with openldap
