@@ -9,7 +9,7 @@ if (($dokuwiki{'status'} || 'disabled') eq 'enabled'){
     my $key = $pki{'KeyFile'} || '/etc/pki/tls/private/NSRV.key';
 
 if ( $domain eq '' ) {
-$OUT .= "Alias /dokuwiki /usr/share/dokuwiki";
+$OUT .= "Alias /dokuwiki /usr/share/dokuwiki\n";
 
 if (exists $dokuwiki{'URL'})
     {
