@@ -1,5 +1,5 @@
 %define name nethserver-dokuwiki
-%define version 1.2.3
+%define version 1.2.4
 %define release 1
 Summary: Nethserver integration of dokuwiki
 Name: %{name}
@@ -46,6 +46,10 @@ rm -rf $RPM_BUILD_ROOT
 %postun
 
 %changelog
+* Mon Jun 04 2018 stephane de labrusse <stephdl@de-labrusse.fr> 1.2.4-1.ns7
+- Avoid apache vhost collision
+- better definition of ssl certificate
+
 * Sun May 13 2018 stephane de labrusse <stephdl@de-labrusse.fr> 1.2.3-1.ns7
 - Typo on the apache URL path
 
