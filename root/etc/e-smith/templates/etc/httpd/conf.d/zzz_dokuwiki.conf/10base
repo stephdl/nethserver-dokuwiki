@@ -5,8 +5,9 @@ if (($dokuwiki{'status'} || 'disabled') eq 'enabled'){
     my $maxsize = $dokuwiki{'MaxUploadSize'} || '200';
     $maxsize .= 'M' unless ($maxsize =~ m/M$/);
     my $domain = $dokuwiki{'DomainName'} || '';
-    my $cert = $pki{'CrtFile'} || '/etc/pki/tls/certs/NSRV.crt';
-    my $key = $pki{'KeyFile'} || '/etc/pki/tls/private/NSRV.key';
+    my $cert = '/etc/pki/tls/certs/localhost.crt';
+    my $key = '/etc/pki/tls/private/localhost.key';
+    my $chain = ($pki{ChainFile} && -e $pki{ChainFile})? "SSLCertificateChainFile $pki{ChainFile}" : "#SSLCertificateChainFile";
     my $php_port = ${'rh-php71-php-fpm'}{'TCPPorts'} || '9001';
 
 if ( $domain eq '' ) {
@@ -22,6 +23,15 @@ elsif ($domain) {
     $OUT .=<<"EOF";
 
 <VirtualHost *:80>
+    IncludeOptional conf.d/default-virtualhost.inc
+</VirtualHost>
+
+<VirtualHost *:80>
+   ServerName $domain
+   RedirectMatch 301 ^(?!/\.well-known/acme-challenge/).* https://$domain
+</VirtualHost>
+
+<VirtualHost *:80>
     ServerName $domain
     DocumentRoot  /usr/share/dokuwiki/
     Redirect permanent / https://$domain/
@@ -32,6 +42,7 @@ elsif ($domain) {
     SSLEngine on
     SSLCertificateFile "$cert"
     SSLCertificateKeyFile "$key"
+    $chain
     DocumentRoot  /usr/share/dokuwiki/
 EOF
 }

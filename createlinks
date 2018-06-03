@@ -10,11 +10,11 @@ my $event = "nethserver-dokuwiki-update";
 event_actions($event, 
              'initialize-default-databases' => '00');
 
-templates2events("/etc/httpd/conf.d/dokuwiki.conf",  $event);
+templates2events("/etc/httpd/conf.d/zzz_dokuwiki.conf",  $event);
 templates2events("/etc/dokuwiki/local.protected.php",  $event);
 templates2events("/etc/httpd/conf.d/default-virtualhost.inc",  $event);
 
-event_services($event, 'httpd' => 'reload');
+event_services($event, 'httpd' => 'restart');
 
 #case dc or directory installed after
 templates2events("/etc/dokuwiki/local.protected.php",  qw (
@@ -24,5 +24,10 @@ templates2events("/etc/dokuwiki/local.protected.php",  qw (
     ));
 
 my $event = 'trusted-networks-modify';
-templates2events("/etc/httpd/conf.d/dokuwiki.conf",  $event);
+templates2events("/etc/httpd/conf.d/zzz_dokuwiki.conf",  $event);
 event_services($event, 'httpd' => 'reload');
+
+my $event = 'certificate-update';
+templates2events("/etc/httpd/conf.d/zzz_dokuwiki.conf",  $event);
+event_services($event, 'httpd' => 'reload');
+
