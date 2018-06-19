@@ -46,12 +46,15 @@ EOF
     }
 
     elsif ($sssd->isAD()) {
-    $OUT .=<<"EOF";
+        $OUT .=<<"EOF";
 \$conf['authtype'] = 'authad';
 \$conf['plugin']['authad']['account_suffix']     = '\@$DomainName';
 \$conf['plugin']['authad']['base_dn']            = '$baseDN';
 \$conf['plugin']['authad']['domain_controllers'] = '$host'; //multiple can be given
 EOF
+        if($sssd->startTls()) {
+            $OUT .= "\$conf['plugin']['authad']['use_tls'] = 1;";
+        }
     }
 
     else {
