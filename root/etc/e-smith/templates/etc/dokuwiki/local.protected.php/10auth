@@ -16,6 +16,7 @@ my $binddn = $sssd->bindDN();
 #specific Samba4 AD
 my $host = $sssd->ldapURI();
 my $baseDN = $sssd->baseDN();
+$tls = $sssd->startTls();
 
 #retrieve the dokuwiki authentication
 my $auth = $dokuwiki{'Authentication'} || 'ldap';
@@ -52,7 +53,7 @@ EOF
 \$conf['plugin']['authad']['base_dn']            = '$baseDN';
 \$conf['plugin']['authad']['domain_controllers'] = '$host'; //multiple can be given
 EOF
-        if($sssd->startTls()) {
+        if($tls) {
             $OUT .= "\$conf['plugin']['authad']['use_tls'] = 1;";
         }
     }
