@@ -1,5 +1,5 @@
 %define name nethserver-dokuwiki
-%define version 1.2.6
+%define version 1.2.7
 %define release 1
 Summary: Nethserver integration of dokuwiki
 Name: %{name}
@@ -46,6 +46,9 @@ rm -rf $RPM_BUILD_ROOT
 %postun
 
 %changelog
+* Fri Jun 21 2019 stephane de Labrusse <stephdl@de-labrusse.fr> 1.2.7-1.ns7
+- MaxExecutionTime and MaxInputTime implemented in apache settings
+
 * Wed Jun 20 2018 stephane de labrusse <stephdl@de-labrusse.fr> 1.2.6-1.ns7
 - Comment dokuwiki.conf, do not remove it
 
