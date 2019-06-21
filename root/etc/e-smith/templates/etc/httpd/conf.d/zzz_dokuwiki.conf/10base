@@ -2,8 +2,10 @@
 
 if (($dokuwiki{'status'} || 'disabled') eq 'enabled'){
     my $allow = (($dokuwiki{'access'} || 'private') eq 'public') ? 'all granted':"ip $localAccess";
-    my $maxsize = $dokuwiki{'MaxUploadSize'} || '200';
+    my $maxsize = $dokuwiki{'MaxUploadSize'} || '256';
     $maxsize .= 'M' unless ($maxsize =~ m/M$/);
+    my $MaxExecutionTime = $dokuwiki{'MaxExecutionTime'} || '60';
+    my $MaxInputTime = 2*($dokuwiki{'MaxExecutionTime'} || '60');
     my $domain = $dokuwiki{'DomainName'} || '';
     my $cert = '/etc/pki/tls/certs/localhost.crt';
     my $key = '/etc/pki/tls/private/localhost.key';
@@ -58,6 +60,8 @@ EOF
     php_admin_value memory_limit $maxsize
     php_admin_value upload_max_filesize $maxsize
     php_admin_value post_max_size $maxsize
+    php_admin_value max_execution_time $MaxExecutionTime
+    php_admin_value max_input_time $MaxInputTime
     php_admin_value upload_tmp_dir /var/lib/dokuwiki/data/tmp
     php_admin_value session.save_path /var/lib/dokuwiki/data/tmp
 
