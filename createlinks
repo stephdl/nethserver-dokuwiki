@@ -14,8 +14,10 @@ templates2events("/etc/httpd/conf.d/zzz_dokuwiki.conf",  $event);
 templates2events("/etc/dokuwiki/local.protected.php",  $event);
 templates2events("/etc/httpd/conf.d/default-virtualhost.inc",  $event);
 templates2events("/etc/httpd/conf.d/dokuwiki.conf", $event);
+templates2events("/etc/opt/rh/rh-php71/php-fpm.d/dokuwiki.conf", $event);
 
 event_services($event, 'httpd' => 'restart');
+event_services($event, 'rh-php71-php-fpm' => 'restart');
 
 #case dc or directory installed after
 templates2events("/etc/dokuwiki/local.protected.php",  qw (
@@ -27,8 +29,10 @@ templates2events("/etc/dokuwiki/local.protected.php",  qw (
 my $event = 'trusted-networks-modify';
 templates2events("/etc/httpd/conf.d/zzz_dokuwiki.conf",  $event);
 event_services($event, 'httpd' => 'reload');
+event_services($event, 'rh-php71-php-fpm' => 'restart');
 
 my $event = 'certificate-update';
 templates2events("/etc/httpd/conf.d/zzz_dokuwiki.conf",  $event);
 event_services($event, 'httpd' => 'reload');
+event_services($event, 'rh-php71-php-fpm' => 'restart');
 

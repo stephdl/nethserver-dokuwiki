@@ -10,7 +10,6 @@ if (($dokuwiki{'status'} || 'disabled') eq 'enabled'){
     my $cert = '/etc/pki/tls/certs/localhost.crt';
     my $key = '/etc/pki/tls/private/localhost.key';
     my $chain = ($pki{ChainFile} && -e $pki{ChainFile})? "SSLCertificateChainFile $pki{ChainFile}" : "#SSLCertificateChainFile";
-    my $php_port = ${'rh-php71-php-fpm'}{'TCPPorts'} || '9001';
 
 if ( $domain eq '' ) {
 $OUT .= "Alias /dokuwiki /usr/share/dokuwiki\n";
@@ -57,16 +56,8 @@ EOF
     Options +FollowSymlinks
     AddType application/x-httpd-php .php
     Require $allow
-    php_admin_value memory_limit $maxsize
-    php_admin_value upload_max_filesize $maxsize
-    php_admin_value post_max_size $maxsize
-    php_admin_value max_execution_time $MaxExecutionTime
-    php_admin_value max_input_time $MaxInputTime
-    php_admin_value upload_tmp_dir /var/lib/dokuwiki/data/tmp
-    php_admin_value session.save_path /var/lib/dokuwiki/data/tmp
-
     <FilesMatch \.php\$>
-        SetHandler "proxy:fcgi://127.0.0.1:$php_port"
+          SetHandler "proxy:unix:/var/run/rh-php71-php-fpm/dokuwiki.sock|fcgi://localhost/"
     </FilesMatch>
 </Directory>
 
