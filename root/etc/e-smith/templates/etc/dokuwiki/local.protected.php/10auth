@@ -12,6 +12,7 @@ my $server = $sssd->ldapURI() .':'. $sssd->port();
 my $usertree = $sssd->userDN();
 my $grouptree = $sssd->groupDN();
 my $binddn = $sssd->bindDN();
+my $startTls = $sssd->startTls() || '0';
 
 #specific Samba4 AD
 my $host = $sssd->ldapURI();
@@ -41,7 +42,7 @@ elsif ($auth eq 'ldap'){
 \$conf['plugin'][\$conf['authtype']]['groupkey'] = 'cn';
 \$conf['plugin']['authldap']['binddn']     = "$binddn";
 \$conf['plugin']['authldap']['bindpw']     = "$quotedBindPass";
-\$conf['plugin']['authldap']['starttls']   = 1;
+\$conf['plugin']['authldap']['starttls']   = $startTls;
 \$conf['plugin']['authldap']['modPass'] = 0;
 EOF
     }

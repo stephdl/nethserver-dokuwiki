@@ -1,5 +1,5 @@
 %define name nethserver-dokuwiki
-%define version 1.2.8
+%define version 1.2.9
 %define release 1
 Summary: Nethserver integration of dokuwiki
 Name: %{name}
@@ -46,6 +46,9 @@ rm -rf $RPM_BUILD_ROOT
 %postun
 
 %changelog
+* Wed Jun 26 2019 Stephane de Labrusse <stephdl@de-labrusse.fr> 1.2.9-1.ns7
+- Find startTls from NethServer::SSSD for openLdap remote authenticator
+
 * Sat Jun 22 2019 stephane de Labrusse <stephdl@de-labrusse.fr> 1.2.8-1.ns7
 - Use a dedicated rh-php71-php service for dokuwiki
 
