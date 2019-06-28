@@ -37,8 +37,8 @@ elsif ($auth eq 'ldap'){
 \$conf['plugin'][\$conf['authtype']]['version'] = '3';
 \$conf['plugin'][\$conf['authtype']]['usertree'] = "$usertree";
 \$conf['plugin'][\$conf['authtype']]['grouptree'] = "$grouptree";
-\$conf['plugin'][\$conf['authtype']]['userfilter'] = '(&(uid=%{user})(objectClass=inetOrgPerson))';
-\$conf['plugin']['authldap']['groupfilter']  = '(|(memberUid=%{user})(gidNumber=%{gid}))';
+\$conf['plugin'][\$conf['authtype']]['userfilter'] = '(|(uid=%{user})(mail=%{user}))';
+\$conf['plugin']['authldap']['groupfilter']  = '(memberUid=%{uid})';
 \$conf['plugin'][\$conf['authtype']]['groupkey'] = 'cn';
 \$conf['plugin']['authldap']['binddn']     = "$binddn";
 \$conf['plugin']['authldap']['bindpw']     = "$quotedBindPass";

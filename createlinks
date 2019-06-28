@@ -5,6 +5,9 @@ use esmith::Build::CreateLinks  qw(:all);
 safe_symlink("/etc/e-smith/templates-default/template-begin-php", "root/etc/e-smith/templates/etc/dokuwiki/local.protected.php/template-begin");
 safe_symlink("/etc/e-smith/templates-default/template-end-php", "root/etc/e-smith/templates/etc/dokuwiki/local.protected.php/template-end");
 
+safe_symlink("/etc/e-smith/templates-default/template-begin-php", "root/etc/e-smith/templates/etc/dokuwiki/local.php/template-begin");
+safe_symlink("/etc/e-smith/templates-default/template-end-php", "root/etc/e-smith/templates/etc/dokuwiki/local.php/template-end");
+
 my $event = "nethserver-dokuwiki-update";
 
 event_actions($event, 
@@ -12,6 +15,7 @@ event_actions($event,
 
 templates2events("/etc/httpd/conf.d/zzz_dokuwiki.conf",  $event);
 templates2events("/etc/dokuwiki/local.protected.php",  $event);
+templates2events("/etc/dokuwiki/local.php",  $event);
 templates2events("/etc/httpd/conf.d/default-virtualhost.inc",  $event);
 templates2events("/etc/httpd/conf.d/dokuwiki.conf", $event);
 templates2events("/etc/opt/rh/rh-php71/php-fpm.d/dokuwiki.conf", $event);

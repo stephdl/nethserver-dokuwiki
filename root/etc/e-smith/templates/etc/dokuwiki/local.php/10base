@@ -1,0 +1,3 @@
+{
+    $OUT .= "\$conf[\'superuser\'] = \'admin,admin\@$DomainName\';";
+}
