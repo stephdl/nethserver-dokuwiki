@@ -1,3 +1,7 @@
 
 $conf['useacl'] = 1;
 
+{
+    $OUT .= "\$conf[\'superuser\'] = \'admin,admin\@$DomainName\';";
+}
+

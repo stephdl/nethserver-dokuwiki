@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# ensure that local.php is writable by apache
+
+/usr/bin/chown apache:apache /etc/dokuwiki/local.php

@@ -1,5 +1,5 @@
 %define name nethserver-dokuwiki
-%define version 1.2.10
+%define version 1.2.11
 %define release 1
 Summary: Nethserver integration of dokuwiki
 Name: %{name}
@@ -42,10 +42,16 @@ rm -f %{name}-%{version}-filelist
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post
+# ensure the local.php is writable by apache
+/bin/chown apache:apache /etc/dokuwiki/local.php
 
 %postun
 
 %changelog
+* Sun Jun 30 2019 Stephane de Labrusse <stephdl@de-labrusse.fr> 1.2.11-1.ns7
+- local.php must be writable by apache and cannot be a template
+
 * Fri Jun 28 2019 Stephane de Labrusse <stephdl@de-labrusse.fr> 1.2.10-1.ns7
 - Allow the email address login with openLdap
 
