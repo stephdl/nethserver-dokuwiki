@@ -1,0 +1,8 @@
+
+#
+# nsapi_nethserver_dokuwiki
+#
+Cmnd_Alias NSAPI_NETHSERVER_DOKUWIKI = \
+     /usr/libexec/nethserver/api/nethserver-dokuwiki/read
+
+Defaults!NSAPI_NETHSERVER_DOKUWIKI !requiretty

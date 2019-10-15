@@ -1,5 +1,5 @@
 %define name nethserver-dokuwiki
-%define version 1.2.11
+%define version 1.2.12
 %define release 1
 Summary: Nethserver integration of dokuwiki
 Name: %{name}
@@ -26,10 +26,20 @@ DokuWiki is a simple to use Wiki aimed at the documentation needs of a small com
 
 %build
 perl ./createlinks
+sed -i 's/_RELEASE_/%{version}/' %{name}.json
 
 %install
 rm -rf $RPM_BUILD_ROOT
 (cd root   ; find . -depth -print | cpio -dump $RPM_BUILD_ROOT)
+
+mkdir -p %{buildroot}/usr/share/cockpit/%{name}/
+mkdir -p %{buildroot}/usr/share/cockpit/nethserver/applications/
+mkdir -p %{buildroot}/usr/libexec/nethserver/api/%{name}/
+cp -a manifest.json %{buildroot}/usr/share/cockpit/%{name}/
+cp -a logo.png %{buildroot}/usr/share/cockpit/%{name}/
+cp -a %{name}.json %{buildroot}/usr/share/cockpit/nethserver/applications/
+cp -a api/* %{buildroot}/usr/libexec/nethserver/api/%{name}/
+
 rm -f %{name}-%{version}-filelist
 %{genfilelist} $RPM_BUILD_ROOT \
 	> %{name}-%{version}-filelist
@@ -49,6 +59,9 @@ rm -rf $RPM_BUILD_ROOT
 %postun
 
 %changelog
+* Tue Oct 15 2019 Stephane de Labrusse <stephdl@de-labrusse.fr> 1.2.12-1.ns7
+- cockpit. added to legacy apps
+
 * Sun Jun 30 2019 Stephane de Labrusse <stephdl@de-labrusse.fr> 1.2.11-1.ns7
 - local.php must be writable by apache and cannot be a template
 
