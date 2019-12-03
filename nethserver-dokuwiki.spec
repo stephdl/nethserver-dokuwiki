@@ -1,5 +1,5 @@
 %define name nethserver-dokuwiki
-%define version 1.2.12
+%define version 1.2.13
 %define release 1
 Summary: Nethserver integration of dokuwiki
 Name: %{name}
@@ -59,6 +59,9 @@ rm -rf $RPM_BUILD_ROOT
 %postun
 
 %changelog
+* Tue Nov 3 2019 Stephane de Labrusse <stephdl@de-labrusse.fr> 1.2.13-1.NS7
+- Changed name of runtime directory fragment for rh-php71 
+
 * Tue Oct 15 2019 Stephane de Labrusse <stephdl@de-labrusse.fr> 1.2.12-1.ns7
 - cockpit. added to legacy apps
 
