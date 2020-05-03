@@ -60,6 +60,9 @@ rm -rf $RPM_BUILD_ROOT
 %postun
 
 %changelog
+* Sun May 03 2020  stephane de Labrusse  <stephdl@de-labrusse.fr> 1.3.0-1.ns7
+- Move to rh-php73
+
 * Thu Mar 05 2020  stephane de Labrusse <stephdl@de-labrusse.fr> 1.2.14-1.ns7
 - Fix bad sudoers permission
 
