@@ -1,5 +1,5 @@
 %define name nethserver-dokuwiki
-%define version 1.2.14
+%define version 1.3.0
 %define release 1
 Summary: Nethserver integration of dokuwiki
 Name: %{name}
@@ -13,7 +13,7 @@ BuildRequires: nethserver-devtools
 BuildRoot: /var/tmp/%{name}-%{version}
 Requires: dokuwiki >= 20180422
 Requires: nethserver-httpd
-Requires: nethserver-rh-php71-php-fpm
+Requires: nethserver-rh-php73-php-fpm
 AutoReqProv: no
 
 %description
@@ -60,6 +60,9 @@ rm -rf $RPM_BUILD_ROOT
 %postun
 
 %changelog
+* Sun May 03 2020  stephane de Labrusse  <stephdl@de-labrusse.fr> 1.3.0-1.ns7
+- Move to rh-php73
+
 * Thu Mar 05 2020  stephane de Labrusse <stephdl@de-labrusse.fr> 1.2.14-1.ns7
 - Fix bad sudoers permission
 

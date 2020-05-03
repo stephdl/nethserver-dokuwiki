@@ -57,7 +57,7 @@ EOF
     AddType application/x-httpd-php .php
     Require $allow
     <FilesMatch \.php\$>
-          SetHandler "proxy:unix:/var/run/rh-php71-php-fpm/dokuwiki.sock|fcgi://localhost/"
+          SetHandler "proxy:unix:/var/run/rh-php73-php-fpm/dokuwiki.sock|fcgi://localhost/"
     </FilesMatch>
 </Directory>
 
