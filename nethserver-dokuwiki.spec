@@ -1,5 +1,5 @@
 %define name nethserver-dokuwiki
-%define version 1.3.0
+%define version 1.3.1
 %define release 1
 Summary: Nethserver integration of dokuwiki
 Name: %{name}
@@ -58,8 +58,13 @@ rm -rf $RPM_BUILD_ROOT
 /bin/chown apache:apache /etc/dokuwiki/local.php
 
 %postun
+/usr/bin/rm -f /etc/httpd/conf.d/zzz_dokuwiki.conf
+/usr/bin/systemctl reload httpd
 
 %changelog
+* Sat Jul 04 2020 stephane de Labrusse <stephdl@de-labrusse.fr> 1.3.1
+- Remove http templates after rpm removal
+
 * Sun May 03 2020  stephane de Labrusse  <stephdl@de-labrusse.fr> 1.3.0-1.ns7
 - Move to rh-php73
 
