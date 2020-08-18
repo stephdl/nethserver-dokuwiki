@@ -1,6 +1,6 @@
 %define name nethserver-dokuwiki
 %define version 1.3.1
-%define release 1
+%define release 2
 Summary: Nethserver integration of dokuwiki
 Name: %{name}
 Version: %{version}
@@ -58,8 +58,10 @@ rm -rf $RPM_BUILD_ROOT
 /bin/chown apache:apache /etc/dokuwiki/local.php
 
 %postun
-/usr/bin/rm -f /etc/httpd/conf.d/zzz_dokuwiki.conf
-/usr/bin/systemctl reload httpd
+if [ $1 == 0 ] ; then
+	/usr/bin/rm -f /etc/httpd/conf.d/zzz_dokuwiki.conf
+	/usr/bin/systemctl reload httpd
+fi
 
 %changelog
 * Sat Jul 04 2020 stephane de Labrusse <stephdl@de-labrusse.fr> 1.3.1
