@@ -1,6 +1,6 @@
 %define name nethserver-dokuwiki
-%define version 1.3.1
-%define release 2
+%define version 1.3.2
+%define release 1
 Summary: Nethserver integration of dokuwiki
 Name: %{name}
 Version: %{version}
@@ -64,6 +64,9 @@ if [ $1 == 0 ] ; then
 fi
 
 %changelog
+* Thu Nov 19 2020  stephane de Labrusse <stephdl@de-labrusse.fr> 1.3.2
+- Remove the trailling / of linux fpm socket
+
 * Sat Jul 04 2020 stephane de Labrusse <stephdl@de-labrusse.fr> 1.3.1
 - Remove http templates after rpm removal
 
