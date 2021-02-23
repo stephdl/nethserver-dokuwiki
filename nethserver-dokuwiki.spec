@@ -1,5 +1,5 @@
 %define name nethserver-dokuwiki
-%define version 1.3.2
+%define version 1.3.3
 %define release 1
 Summary: Nethserver integration of dokuwiki
 Name: %{name}
@@ -64,6 +64,9 @@ if [ $1 == 0 ] ; then
 fi
 
 %changelog
+* Tue Feb 23 2021 stephane de Labrusse <stephdl@de-labrusse.fr> 1.3.3
+- Include full folders inside backup
+
 * Thu Nov 19 2020  stephane de Labrusse <stephdl@de-labrusse.fr> 1.3.2
 - Remove the trailling / of linux fpm socket
 
